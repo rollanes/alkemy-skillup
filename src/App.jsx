@@ -8,7 +8,7 @@ import { Footer } from "./components/Footer";
 export default function App() {
   return (
     <>
-    <Header />
+      <Header />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/movies" element={<MoviesList />} />

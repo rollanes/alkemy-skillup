@@ -3,7 +3,7 @@ import React from "react";
 export const Footer = () => {
   return (
     <footer aria-label="Site Footer" className="bg-gray-50 fixed inset-x-0 bottom-0">
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="flex justify-center text-teal-600 sm:justify-start">
             <svg
