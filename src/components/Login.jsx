@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 export const Login = () => {
 
   const navigate = useNavigate();
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -20,6 +20,7 @@ export const Login = () => {
         title: "Oops...",
         text: "Fields cannot be empty!",
         icon: "error",
+        confirmButtonColor: "#0D9488",
       });
       return;
     }
@@ -29,6 +30,7 @@ export const Login = () => {
         title: "Oops...",
         text: "You should enter a valid email!",
         icon: "error",
+        confirmButtonColor: "#0D9488",
       });
       return;
     }
@@ -38,6 +40,7 @@ export const Login = () => {
         title: "Error",
         text: "Invalid credentials",
         icon: "error",
+        confirmButtonColor: "#0D9488",
       });
     }
 
@@ -48,6 +51,7 @@ export const Login = () => {
           title: "Nice!",
           text: "You're in",
           icon: "success",
+          confirmButtonColor: "#0D9488",
         });
 
         const receivedToken = res.data.token;
