@@ -1,9 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 
 export const MoviesList = () => {
 
+  const [ moviesList, setMoviesList ] = useState([]);
+
   let token = localStorage.getItem('token');
+  useEffect(() => {
+    const endPoint = 'https://api.themoviedb.org/3/discover/movie?api_key=a3afb72cd27c498d0a4ceccdbb854548&page=1';
+    axios
+      .get(endPoint)
+      .then(res => {
+        const apiData = res.data;
+        setMoviesList(apiData.results);
+      })
+  }, [setMoviesList]);
 
   return (
     <>
