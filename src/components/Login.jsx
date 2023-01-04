@@ -44,6 +44,9 @@ export const Login = () => {
           text: "You're in",
           icon: 'success'
         });
+
+        const receivedToken = res.data.token;
+        localStorage.setItem('token', receivedToken);
       });
   };
 
