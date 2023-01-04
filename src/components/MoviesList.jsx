@@ -29,7 +29,7 @@ export const MoviesList = () => {
           </h2>
         </header>
         <div className="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-4">
-          <a href="#" className="block group">
+          <Link href="#" className="block group">
             <img
               src="https://images.unsplash.com/photo-1592921870789-04563d55041c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
               alt=""
@@ -52,7 +52,7 @@ export const MoviesList = () => {
 
               <p className="text-gray-900">Rating</p>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
       )}
