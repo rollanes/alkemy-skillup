@@ -101,7 +101,7 @@ export const Login = () => {
         <div className="flex items-center justify-center">
           <button
             type="submit"
-            className="ml-3 inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+            className="ml-3 inline-block rounded-lg bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
           >
             Log in
           </button>
