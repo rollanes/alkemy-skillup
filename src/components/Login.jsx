@@ -55,12 +55,12 @@ export const Login = () => {
         });
 
         const receivedToken = res.data.token;
-        localStorage.setItem("token", receivedToken);
+        sessionStorage.setItem("token", receivedToken);
         navigate("/movies");
       });
   };
 
-  let token = localStorage.getItem('token');
+  let token = sessionStorage.getItem('token');
 
   return (
     <>

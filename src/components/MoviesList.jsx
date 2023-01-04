@@ -8,7 +8,7 @@ import { MovieItem } from "./MovieItem";
 export const MoviesList = () => {
   const [moviesList, setMoviesList] = useState([]);
 
-  let token = localStorage.getItem("token");
+  let token = sessionStorage.getItem("token");
 
   useEffect(() => {
     const endPoint =
