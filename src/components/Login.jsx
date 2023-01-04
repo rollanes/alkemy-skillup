@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const Login = () => {
   const handleSubmit = (e) => {
@@ -6,23 +7,44 @@ export const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    const regexEmail =
+      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     if (email === "" || password === "") {
+      Swal.fire({
+        title: 'Oops...',
+        text: 'Fields cannot be empty!',
+        icon: 'error'
+      });
+      return;
     }
 
-    if (email !== "" && regexEmail.test(email)) {
+    if (email !== "" && !regexEmail.test(email)) {
+      Swal.fire({
+        title: 'Oops...',
+        text: 'You should enter a valid email!',
+        icon: 'error'
+      });
+      return;
     }
 
-    if(email === 'challenge@alkemy.org' || password !== 'react'){
-
+    if (email !== "challenge@alkemy.org" || password !== "react") {
+      Swal.fire({
+        title: 'Error',
+        text: "Invalid credentials",
+        icon: 'error'
+      });
     }
 
     axios
-      .post('http://challenge-react.alkemy.org', { email, password })
-      .then(res => {
-
-      })
+      .post("http://challenge-react.alkemy.org", { email, password })
+      .then((res) => {
+        Swal.fire({
+          title: 'Nice!',
+          text: "You're in",
+          icon: 'success'
+        });
+      });
   };
 
   return (
@@ -48,6 +70,7 @@ export const Login = () => {
               className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
               placeholder="Enter email"
               name="email"
+              autoComplete="email"
             />
           </div>
         </div>
@@ -62,6 +85,7 @@ export const Login = () => {
               className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
               placeholder="Enter password"
               name="password"
+              autoComplete="password"
             />
           </div>
         </div>
