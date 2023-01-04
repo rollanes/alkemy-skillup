@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,8 +15,14 @@ export const Login = () => {
     }
 
     if(email === 'challenge@alkemy.org' || password !== 'react'){
-      
+
     }
+
+    axios
+      .post('http://challenge-react.alkemy.org', { email, password })
+      .then(res => {
+
+      })
   };
 
   return (
