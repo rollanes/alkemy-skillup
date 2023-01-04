@@ -59,12 +59,12 @@ export const Header = () => {
 
             <div className="flex items-center gap-4">
               <div className="sm:flex sm:gap-4">
-                <a
+                <Link
                   className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-                  href="/"
+                  to="/"
                 >
                   Login
-                </a>
+                </Link>
               </div>
 
               <div className="block md:hidden">
@@ -123,26 +123,26 @@ export const Header = () => {
         >
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="text-gray-500 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Dashboard
-                </a>
+                  Home
+                </Link>
 
-                <a
-                  href="#"
+                <Link
+                  to="/movies"
                   className="text-gray-500 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Team
-                </a>
+                  Movies
+                </Link>
 
-                <a
-                  href="#"
+                <Link
+                  to="/contact"
                   className="text-gray-500 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Projects
-                </a>
+                  Contact
+                </Link>
 
               </div>
             </div>
