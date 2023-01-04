@@ -1,7 +1,11 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -47,6 +51,7 @@ export const Login = () => {
 
         const receivedToken = res.data.token;
         localStorage.setItem('token', receivedToken);
+        navigate('/movies');
       });
   };
 
