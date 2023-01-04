@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
-export const MovieItem = ({ title, description, image, rating }) => {
+export const MovieItem = ({ title, description, image, rating, id }) => {
   return (
-    <Link to="/" className="block group">
+    <Link to={`/detail?movieID=${ id }`} className="block group">
       <img
         src={ `https://image.tmdb.org/t/p/w500/${ image }` }
         alt={ title }
-        className="h-[250px] w-full object-cover sm:h-[350px]"
+        className="h-[250px] w-full object-contain sm:h-[350px]"
       />
 
       <div className="flex justify-between mt-3 text-sm">

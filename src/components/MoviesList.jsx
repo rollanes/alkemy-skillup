@@ -13,20 +13,21 @@ export const MoviesList = () => {
   useEffect(() => {
     const endPoint =
       "https://api.themoviedb.org/3/discover/movie?api_key=a3afb72cd27c498d0a4ceccdbb854548&page=1";
-    axios.get(endPoint)
+    axios
+      .get(endPoint)
       .then((res) => {
-      const apiData = res.data;
-      setMoviesList(apiData.results);
-    })
-      .catch( err => {
+        const apiData = res.data;
+        setMoviesList(apiData.results);
+      })
+      .catch((err) => {
         Swal.fire({
           title: "Oops...",
           text: "There was an error",
           icon: "error",
           confirmButtonColor: "#0D9488",
-          footer: "Please, try again later"
+          footer: "Please, try again later",
         });
-      })
+      });
   }, [setMoviesList]);
 
   return (
@@ -42,7 +43,16 @@ export const MoviesList = () => {
           </header>
           <div className="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-4">
             {moviesList.map((movie, index) => {
-              return <MovieItem title={movie.original_title} description={movie.overview} image={movie.poster_path} rating={movie.vote_average} key={index} />;
+              return (
+                <MovieItem
+                  title={movie.original_title}
+                  description={movie.overview}
+                  image={movie.poster_path}
+                  rating={movie.vote_average}
+                  key={index}
+                  id={movie.id}
+                />
+              );
             })}
           </div>
         </div>
