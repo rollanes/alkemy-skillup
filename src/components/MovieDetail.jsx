@@ -1,3 +1,5 @@
+import axios from "axios";
+import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -8,7 +10,20 @@ export const MovieDetail = () => {
   let movieID = query.get("movieID");
 
   useEffect(() => {
-
+    const endPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=a3afb72cd27c498d0a4ceccdbb854548&language=en-US`
+    axios.get(endPoint).then((res) => {
+      const movieData = res.data;
+      console.log(movieData);
+    })
+    .catch((err) => {
+      Swal.fire({
+        title: "Oops...",
+        text: "There was an error",
+        icon: "error",
+        confirmButtonColor: "#0D9488",
+        footer: "Please, try again later",
+      });
+    })
   }, [movieID]);
 
   return (
