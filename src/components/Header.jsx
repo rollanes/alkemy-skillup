@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Transition } from "@headlessui/react";
+import { Search } from "./Search";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ export const Header = () => {
     <header aria-label="Site Header" className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex-1 md:flex md:items-center md:gap-12">
+          <div className="flex-1 md:flex md:items-center md:gap-6">
             <a className="block text-teal-600" href="/">
               <span className="sr-only">Home</span>
 
@@ -39,6 +40,8 @@ export const Header = () => {
             </a>
           </div>
 
+          <Search />
+          
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Site Nav" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">
