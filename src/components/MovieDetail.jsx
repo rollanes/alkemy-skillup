@@ -1,18 +1,18 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 export const MovieDetail = () => {
   let token = sessionStorage.getItem("token");
 
-  let query = new URLSearchParams(window.location.search);
-  let movieID = query.get("movieID");
+  let { id } = useParams();
+  console.log(id);
 
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    const endPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=a3afb72cd27c498d0a4ceccdbb854548&language=en-US`;
+    const endPoint = `https://api.themoviedb.org/3/movie/${id}?api_key=a3afb72cd27c498d0a4ceccdbb854548&language=en-US`;
     axios
       .get(endPoint)
       .then((res) => {
@@ -28,7 +28,7 @@ export const MovieDetail = () => {
           footer: "Please, try again later",
         });
       });
-  }, [movieID]);
+  }, [id]);
 
   return (
     <>
@@ -69,36 +69,40 @@ export const MovieDetail = () => {
           <div className="container px-15 py-18 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
               <img
-                alt={ movie.original_title }
+                alt={movie.original_title}
                 className="lg:w-96 md:w-fit w-full object-cover object-center rounded border border-gray-200"
-                src={ `https://image.tmdb.org/t/p/w500/${ movie.poster_path }` }
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               />
               <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                 <h2 className="text-sm title-font text-gray-500 tracking-widest pb-2">
                   <ul className="inline ml-1">
-                    { movie.genres.map( (genre) => <li className="inline mr-3" key={genre.id}>{genre.name}</li> )}
+                    {movie.genres.map((genre) => (
+                      <li className="inline mr-3" key={genre.id}>
+                        {genre.name}
+                      </li>
+                    ))}
                   </ul>
                 </h2>
                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                  { movie.original_title }
+                  {movie.original_title}
                 </h1>
                 <div className="flex mt-1 items-center pb-1 border-gray-200 mb-1 justify-start">
                   <span className="title-font font-medium text-2xl text-gray-900">
-                    Release date: { movie.release_date }
+                    Release date: {movie.release_date}
                   </span>
                 </div>
                 <div className="flex mb-4">
                   <span className="flex items-center">
-                    <span className="text-gray-600">{ movie.vote_count } Reviews</span>
+                    <span className="text-gray-600">
+                      {movie.vote_count} Reviews
+                    </span>
                   </span>
                 </div>
-                <p className="leading-relaxed">
-                  { movie.overview }
-                </p>
+                <p className="leading-relaxed">{movie.overview}</p>
 
                 <div className="flex mt-6 items-center pb-3 border-gray-200 mb-5 justify-around">
                   <span className="title-font font-medium text-2xl text-gray-900">
-                    Rating: { movie.vote_average.toString().substring(0, 3) }
+                    Rating: {movie.vote_average.toString().substring(0, 3)}
                   </span>
                   <button className="rounded-full w-10 h-10 bg-teal-200 p-0 border-0 inline-flex items-center justify-center text-teal-500 ml-4">
                     <svg

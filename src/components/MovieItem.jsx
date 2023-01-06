@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const MovieItem = ({ title, description, image, rating, id }) => {
   return (
-    <Link to={`/detail?movieID=${ id }`} className="block group">
+    <Link to={`/detail/${ id }`} className="block group">
       <img
         src={ `https://image.tmdb.org/t/p/w500/${ image }` }
         alt={ title }
