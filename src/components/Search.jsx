@@ -1,8 +1,14 @@
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export const Search = () => {
 
   let token = sessionStorage.getItem('token');
+
+  const navigate = useNavigate();
+
+  let query = new URLSearchParams(window.location.search);
+  let keyword = query.get("keyword");
 
   const handleSubmit = ( e ) => {
     e.preventDefault();
@@ -23,6 +29,9 @@ export const Search = () => {
         icon: "error",
         confirmButtonColor: "#0D9488",
       });
+    } else {
+      e.currentTarget.keyword.value = '';
+      navigate(`/results?keyword=${keyword}`);
     }
 
     if( !token ) {
