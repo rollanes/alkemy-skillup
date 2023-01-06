@@ -31,7 +31,7 @@ export const Search = () => {
       });
     } else {
       e.currentTarget.keyword.value = '';
-      navigate(`/results?keyword=${keyword}`);
+      navigate(`/results/${keyword}`);
     }
 
     if( !token ) {
