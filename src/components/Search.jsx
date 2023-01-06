@@ -4,7 +4,7 @@ export const Search = () => {
 
   const handleSubmit = ( e ) => {
     e.preventDefault();
-    const keyword = e.currentTarget.keyword.value;
+    const keyword = e.currentTarget.keyword.value.trim();
     
     if( keyword.length === 0 ) {
       Swal.fire({
@@ -12,7 +12,14 @@ export const Search = () => {
         text: "Search cannot be empty",
         icon: "error",
         confirmButtonColor: "#0D9488",
-        footer: "Please, write something"
+        footer: "Please, write a keyword"
+      });
+    } else if ( keyword.length < 4 ) {
+      Swal.fire({
+        title: "Error",
+        text: "Keyword must be longer than 4 characters",
+        icon: "error",
+        confirmButtonColor: "#0D9488",
       });
     }
   }
