@@ -7,6 +7,8 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
 
+  let token = sessionStorage.getItem('token');
+
   return (
     <header aria-label="Site Header" className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -40,7 +42,7 @@ export const Header = () => {
             </a>
           </div>
 
-          <Search />
+            <Search /> 
           
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Site Nav" className="hidden md:block">
@@ -86,7 +88,7 @@ export const Header = () => {
                   className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
                   to="/"
                 >
-                  Login
+                  { token ? ("Log out") : ("Log in") }
                 </Link>
               </div>
 

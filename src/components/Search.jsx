@@ -2,6 +2,8 @@ import Swal from "sweetalert2";
 
 export const Search = () => {
 
+  let token = sessionStorage.getItem('token');
+
   const handleSubmit = ( e ) => {
     e.preventDefault();
     const keyword = e.currentTarget.keyword.value.trim();
@@ -18,6 +20,15 @@ export const Search = () => {
       Swal.fire({
         title: "Error",
         text: "Keyword must be longer than 4 characters",
+        icon: "error",
+        confirmButtonColor: "#0D9488",
+      });
+    }
+
+    if( !token ) {
+      Swal.fire({
+        title: "Error",
+        text: "Please log in first",
         icon: "error",
         confirmButtonColor: "#0D9488",
       });
