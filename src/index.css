@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.faved {
+    color: #b91c1c;
+}

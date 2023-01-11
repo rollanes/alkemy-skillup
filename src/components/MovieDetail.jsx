@@ -7,7 +7,6 @@ export const MovieDetail = () => {
   let token = sessionStorage.getItem("token");
 
   let { id } = useParams();
-  console.log(id);
 
   const [movie, setMovie] = useState(null);
 
@@ -29,6 +28,48 @@ export const MovieDetail = () => {
         });
       });
   }, [id]);
+
+  const favMovies = localStorage.getItem("favs");
+  let tempMoviesInFavs;
+
+  if (favMovies === null) {
+    tempMoviesInFavs = [];
+  } else {
+    tempMoviesInFavs = JSON.parse(favMovies);
+  }
+
+  const [isFaved, setIsFaved] = useState(false);
+
+  const handleFavs = (event) => {
+    const btnDiv = event.currentTarget.parentElement;
+    const parent = btnDiv.parentElement.parentElement;
+
+    const imgURL = parent.querySelector("img").getAttribute("src");
+    const title = parent.querySelector("h1").innerText;
+    const overview = parent.querySelector("p").innerText;
+    const movieData = {
+      imgURL,
+      title,
+      overview,
+      id,
+    };
+
+    let movieIsInArray = tempMoviesInFavs.find((movie) => {
+      return movie.id === movieData.id;
+    });
+
+    if (!movieIsInArray) {
+      tempMoviesInFavs.push(movieData);
+      localStorage.setItem("favs", JSON.stringify(tempMoviesInFavs));
+    } else {
+      let moviesLeft = tempMoviesInFavs.filter((movie) => {
+        return movie.id !== movieData.id;
+      });
+      localStorage.setItem("favs", JSON.stringify(moviesLeft));
+    }
+
+    setIsFaved((current) => !current);
+  };
 
   return (
     <>
@@ -104,7 +145,14 @@ export const MovieDetail = () => {
                   <span className="title-font font-medium text-2xl text-gray-900">
                     Rating: {movie.vote_average.toString().substring(0, 3)}
                   </span>
-                  <button className="rounded-full w-10 h-10 bg-teal-200 p-0 border-0 inline-flex items-center justify-center text-teal-500 ml-4">
+                  <button
+                    onClick={handleFavs}
+                    className={
+                      isFaved
+                        ? "faved rounded-full w-10 h-10 bg-teal-200 p-0 border-0 inline-flex items-center justify-center text-teal-500 ml-4]"
+                        : "rounded-full w-10 h-10 bg-teal-200 p-0 border-0 inline-flex items-center justify-center text-teal-500 ml-4"
+                    }
+                  >
                     <svg
                       fill="currentColor"
                       strokeLinecap="round"
