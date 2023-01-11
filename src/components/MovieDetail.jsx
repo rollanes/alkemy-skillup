@@ -29,21 +29,23 @@ export const MovieDetail = () => {
       });
   }, [id]);
 
-  const favMovies = localStorage.getItem("favs");
-  let tempMoviesInFavs;
-
-  if (favMovies === null) {
-    tempMoviesInFavs = [];
-  } else {
-    tempMoviesInFavs = JSON.parse(favMovies);
-  }
-
+  
   const [isFaved, setIsFaved] = useState(false);
-
+  
   const handleFavs = (event) => {
+    
+    const favMovies = localStorage.getItem("favs");
+    let tempMoviesInFavs;
+  
+    if (favMovies === null) {
+      tempMoviesInFavs = [];
+    } else {
+      tempMoviesInFavs = JSON.parse(favMovies);
+    }
     const btnDiv = event.currentTarget.parentElement;
     const parent = btnDiv.parentElement.parentElement;
 
+    const rating = btnDiv.querySelector("span").innerText.substring(7, 11);
     const imgURL = parent.querySelector("img").getAttribute("src");
     const title = parent.querySelector("h1").innerText;
     const overview = parent.querySelector("p").innerText;
@@ -51,6 +53,7 @@ export const MovieDetail = () => {
       imgURL,
       title,
       overview,
+      rating,
       id,
     };
 

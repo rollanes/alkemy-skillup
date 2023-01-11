@@ -66,7 +66,7 @@ export const Header = () => {
                 <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    to="/"
+                    to="/favorites"
                   >
                     Favorites
                   </Link>
@@ -163,7 +163,7 @@ export const Header = () => {
             </Link>
 
             <Link
-              to="/"
+              to="/favorites"
               className="text-gray-500 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Favorites
