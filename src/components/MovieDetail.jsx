@@ -29,14 +29,13 @@ export const MovieDetail = () => {
       });
   }, [id]);
 
-  
-  const [isFaved, setIsFaved] = useState(false);
+  let faved;
   
   const handleFavs = (event) => {
-    
+
     const favMovies = localStorage.getItem("favs");
     let tempMoviesInFavs;
-  
+
     if (favMovies === null) {
       tempMoviesInFavs = [];
     } else {
@@ -64,14 +63,14 @@ export const MovieDetail = () => {
     if (!movieIsInArray) {
       tempMoviesInFavs.push(movieData);
       localStorage.setItem("favs", JSON.stringify(tempMoviesInFavs));
+      faved = true
     } else {
       let moviesLeft = tempMoviesInFavs.filter((movie) => {
         return movie.id !== movieData.id;
       });
       localStorage.setItem("favs", JSON.stringify(moviesLeft));
+      faved = false
     }
-
-    setIsFaved((current) => !current);
   };
 
   return (
@@ -151,8 +150,8 @@ export const MovieDetail = () => {
                   <button
                     onClick={handleFavs}
                     className={
-                      isFaved
-                        ? "faved rounded-full w-10 h-10 bg-teal-200 p-0 border-0 inline-flex items-center justify-center text-teal-500 ml-4]"
+                      faved
+                        ? "rounded-full w-10 h-10 bg-teal-200 p-0 border-0 inline-flex items-center justify-center text-red-500 ml-4]"
                         : "rounded-full w-10 h-10 bg-teal-200 p-0 border-0 inline-flex items-center justify-center text-teal-500 ml-4"
                     }
                   >
