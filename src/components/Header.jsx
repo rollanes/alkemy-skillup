@@ -4,10 +4,10 @@ import { Transition } from "@headlessui/react";
 import { Search } from "./Search";
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [ isOpen, setIsOpen ] = useState(false);
   const ref = useRef();
 
-  let token = sessionStorage.getItem('token');
+  let token = sessionStorage.getItem('token')
 
   return (
     <header aria-label="Site Header" className="bg-white">
